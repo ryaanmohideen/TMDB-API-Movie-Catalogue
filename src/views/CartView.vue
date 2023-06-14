@@ -1,23 +1,19 @@
 <template>
+  <Header />
   <div class="container">
     <h1 class="title">Cart</h1>
-    <div v-if="store.cart.length === 0">Your cart is empty.</div>
+    <div v-if="store.cart.length === 0" class="empty-cart">Your cart is empty.</div>
     <div v-else>
-      <div v-for="movie in store.cart" :key="movie.id" class="cart-item">
-        <div class="cart-item-details">
-          <h2>{{ movie.title }}</h2>
-          <p>{{ movie.genre }}</p>
-          <p>{{ movie.price }}</p>
+      <div v-for="movie in store.cart" :key="movie.title" class="cart-item">
+        <div class="cart-item-container">
+          <div class="cart-item-details">
+            <h2>{{ movie.title }}</h2>
+            <button class="remove-button" @click="removeFromCart(movie)">Remove</button>
+          </div>
+          <div class="cart-item-image">
+            <img :src="`https://image.tmdb.org/t/p/w500/${movie.poster}`" alt="Movie Poster" />
+          </div>
         </div>
-        <div class="cart-item-image">
-          <img
-            :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
-            alt="Movie Poster"
-          />
-        </div>
-        <button class="remove-button" @click="removeFromCart(movie.id)">
-          Remove
-        </button>
       </div>
     </div>
   </div>
@@ -26,15 +22,17 @@
 <script>
 import { useStore } from "../store/index.js";
 import Header from "../components/Header.vue";
-import Hero from "../components/Hero.vue";
-import Footer from "../components/Footer.vue";
+
 export default {
+  components: {
+    Header,
+  },
   name: "CartView",
   setup() {
     const store = useStore();
 
-    function removeFromCart(movieId) {
-      store.removeFromCart(movieId);
+    function removeFromCart(movie) {
+      store.removeFromCart(movie);
     }
 
     return {
@@ -57,10 +55,21 @@ export default {
   margin-bottom: 2rem;
 }
 
+.empty-cart {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
 .cart-item {
+  margin-bottom: 1rem;
+}
+
+.cart-item-container {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 4px;
 }
 
 .cart-item-details {
@@ -69,10 +78,7 @@ export default {
 
 .cart-item h2 {
   margin-bottom: 0.5rem;
-}
-
-.cart-item p {
-  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
 }
 
 .cart-item-image img {
@@ -83,10 +89,19 @@ export default {
 
 .remove-button {
   padding: 0.5rem 1rem;
-  background-color: #ff2e63;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-left: auto;
+}
+
+.remove-button:hover {
+  background-color: #3a923d;
+}
+
+.remove-button:focus {
+  outline: none;
 }
 </style>

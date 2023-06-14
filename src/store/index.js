@@ -15,6 +15,10 @@ export const useStore = defineStore('store', {
       });
 
       await setDoc(doc(firestore, "carts", this.user.email), { cart: this.cart });
-    }
-  }
+    },
+    async removeFromCart(movie) {
+      this.cart = this.cart.filter((cartItem) => cartItem.title !== movie.title);
+      await setDoc(doc(firestore, "carts", this.user.email), { cart: this.cart });
+    },
+  },
 })

@@ -2,7 +2,7 @@
 
 <template>
   <footer class="footer">
-    <p class="footer-text">This is the footer content.</p>
+    <p class="footer-text"> Follow us on all socials @CineWorld.</p>
   </footer>
 </template>
 

@@ -1,50 +1,42 @@
-<script setup>
-import { useRouter } from "vue-router";
-
-const router = useRouter();
-</script>
 <template>
-    <header class="header">
-      <div class="container">
-        <h1 class="logo">My App</h1>
-        <nav class="nav-menu">
-          <router-link to="/" class="nav-item">Home</router-link>
-          <router-link to="/login" class="nav-item">Login</router-link>
-        </nav>
-      </div>
-    </header>
-  </template>
-  
-  <style scoped>
-  .header {
-    background-color: #f1f1f1;
-    padding: 20px;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo {
-    margin: 0;
-    font-size: 24px;
-  }
-  
-  .nav-menu {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .nav-item {
-    margin-left: 20px;
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .nav-item:hover {
-    color: #555;
-  }
-  </style>
-  
+  <header class="header">
+    <nav class="nav">
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/login">Login</router-link></li>
+        <li><router-link to="/purchase">Purchase</router-link></li>
+        <li><router-link to="/cart">Cart</router-link></li>
+      </ul>
+    </nav>
+  </header>
+</template>
+
+<style scoped>
+.header {
+  background-color: #333;
+  padding: 1rem;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav ul li {
+  font-size: 1rem;
+}
+
+.nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem;
+}
+
+.nav ul li a:hover {
+  background-color: #555;
+  border-radius: 4px;
+}
+</style>
