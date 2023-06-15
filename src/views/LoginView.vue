@@ -45,6 +45,14 @@ const loginViaEmail = async () => {
       passwordOne.value
     );
     store.user = user;
+    const cartDoc = await getDoc(doc(firestore, "carts", user.email));
+
+    if (cartDoc.exists()){
+      store.cart = cartDoc.data().cart
+    }
+    else{
+      store.cart = [];
+    }
     router.push("/purchase");
   } catch (error) {
     errorMessage.value = "Incorrect email or password.";
