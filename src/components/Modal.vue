@@ -37,7 +37,6 @@ const movie = (
     },
   })
 ).data;
-console.log(movie);
 </script>
 
 <style scoped>

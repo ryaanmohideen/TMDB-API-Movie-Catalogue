@@ -38,11 +38,11 @@
       </div>
     </div>
     <div class="pagination">
-      <button @click="getTMDBData(currentURL, { query: search }, page === 1 ? 1 : page - 1)">
+      <button @click="getTMDBData(currentURL, { query: search, with_genres:genre },  page === 1 ? 1 : page - 1)">
         Prev
       </button>
       <p>{{ `Page ${page} of ${totalPages}` }}</p>
-      <button @click="getTMDBData(currentURL, { query: search }, page >= totalPages ? totalPages : page + 1)">
+      <button @click="getTMDBData(currentURL, { query: search, with_genres:genre  }, page >= totalPages ? totalPages : page + 1)">
         Next
       </button>
     </div>
