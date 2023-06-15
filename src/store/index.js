@@ -14,6 +14,7 @@ export const useStore = defineStore('store', {
         title,
       });
 
+
       await setDoc(doc(firestore, "carts", this.user.email), { cart: this.cart });
     },
     async removeFromCart(movie) {
